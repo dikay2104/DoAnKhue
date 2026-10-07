@@ -1,0 +1,101 @@
+/* Fresh eco system: near-white green-tinted page, white and pale green alternate as
+   surfaces. Vivid lime green is the action color; yellow and sky are playful accents. */
+:root {
+  font-family: Arial, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: light;
+
+  --font-display: Arial, "Segoe UI", sans-serif;
+  --radius-lg: 28px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+  --palette-page: #F6FCF2;
+  --palette-white: #FFFFFF;
+  --palette-pale-green: #E7F6DE;
+  --palette-light-green: #C4EFB0;
+  --palette-bright-green: #3FCF4E;
+  --palette-green: #16A64A;
+  --palette-deep-green: #0D7A38;
+  --palette-forest: #0B3D1E;
+  --palette-yellow: #FFD52A;
+  --palette-sky: #69C9F2;
+  --color-white: #ffffff;
+  --button-ink: var(--palette-forest);
+  --green-panel: var(--palette-pale-green);
+  --green-panel-text: var(--palette-forest);
+  --green-panel-muted: #3A5847;
+  --green-950: var(--palette-forest);
+  --green-900: var(--palette-deep-green);
+  --green-800: var(--palette-deep-green);
+  --green-700: var(--palette-deep-green);
+  --green-600: var(--palette-green);
+  --green-500: var(--palette-bright-green);
+  --green-400: var(--palette-light-green);
+  --green-300: var(--palette-light-green);
+  --green-200: var(--palette-pale-green);
+  --green-100: var(--palette-pale-green);
+  --green-50: var(--palette-page);
+  --surface-tint: var(--palette-pale-green);
+  --page-bg: var(--palette-page);
+  --section-green: var(--palette-page);
+  --ink: var(--palette-forest);
+  --ink-muted: #46604F;
+  --surface: var(--palette-white);
+  --surface-soft: var(--palette-pale-green);
+  --line: var(--palette-light-green);
+  --line-soft: var(--palette-pale-green);
+  --placeholder: #566B5E;
+  --focus-ring: rgb(22 166 74 / 28%);
+  --focus-ring-strong: var(--palette-forest);
+  --accent-detail: var(--palette-yellow);
+  --accent-sky: var(--palette-sky);
+  --error: #9c302b;
+  --tag-neutral: var(--palette-pale-green);
+  --shadow-soft: rgb(11 61 30 / 10%);
+  --footer-bg: var(--palette-deep-green);
+  --footer-text: var(--palette-white);
+  --footer-muted: var(--palette-white);
+  --footer-line: rgb(255 255 255 / 24%);
+  --green-footer-accent: var(--palette-yellow);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+  background: var(--page-bg);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  background: var(--page-bg);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring-strong);
+  outline-offset: 3px;
+}
