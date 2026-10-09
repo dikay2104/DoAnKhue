@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import projectLogo from '../assets/images/logo_2.png'
 
-export default function Header({ navigation }) {
+export default function Header({ navigation, currentPath, onNavigate }) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
     <header className="site-header">
       <div className="header-inner page-width">
-        <a className="brand" href="#trang-chu" aria-label="Tập Tành Tách Rác, trang chủ" onClick={() => setMenuOpen(false)}>
+        <a className="brand" href="/" aria-label="Tập Tành Tách Rác, trang chủ" onClick={(event) => { event.preventDefault(); onNavigate('/'); setMenuOpen(false) }}>
           <img className="brand-logo" src={projectLogo} alt="Tập Tành Tách Rác" />
         </a>
 
@@ -29,7 +29,8 @@ export default function Header({ navigation }) {
               <a
                 key={item.href}
                 href={item.href}
-                onClick={() => setMenuOpen(false)}
+                aria-current={currentPath === item.href ? 'page' : undefined}
+                onClick={(event) => { event.preventDefault(); onNavigate(item.href); setMenuOpen(false) }}
               >
                 {item.label}
               </a>

@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import GreenReception from '../components/GreenReception'
 import SearchForm from '../components/SearchForm'
 import SearchResults from '../components/SearchResults'
@@ -26,7 +28,7 @@ export default function GuidePage({ searchProps, submission, onSuggestion, onQui
           <div className="quick-groups">
             {quickGroups.map((group) => (
               <button className="quick-group" key={group.label} type="button" onClick={() => onQuickSearch(group.term)}>
-                <span className="quick-group-name">{group.label}<span aria-hidden="true">↗</span></span>
+                <span className="quick-group-name">{group.label}<FontAwesomeIcon className="quick-group-arrow" icon={faArrowRight} aria-hidden="true" /></span>
                 <span>{group.note}</span>
               </button>
             ))}

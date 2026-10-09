@@ -43,8 +43,10 @@ export default function SearchResults({ submission, onSuggestion }) {
               </div>
               <p className="material-line">Chất liệu: {item.material}</p>
               <div className="preparation">
-                <h4>{item.group === 'Rác tái chế' ? 'Cách chuẩn bị' : 'Lưu ý xử lý'}</h4>
-                <ul>{item.preparation.map((step) => <li key={step}>{step}</li>)}</ul>
+                <h4>{item.preparation.length > 0 ? 'Cách chuẩn bị / xử lý' : 'Lưu ý'}</h4>
+                {item.preparation.length > 0
+                  ? <ul>{item.preparation.map((step) => <li key={step}>{step}</li>)}</ul>
+                  : <p>Danh mục chưa nêu cách chuẩn bị cụ thể cho loại này. Hãy xem hướng dẫn phân loại tại địa phương.</p>}
               </div>
               {item.acceptedByGreen ? (
                 <GreenReception compact />
