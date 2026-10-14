@@ -34,7 +34,7 @@ export default function HomePage({ searchProps }) {
         <div className="page-width home-intro-layout">
           <div>
             <p className="hero-eyebrow">Tập Tành Tách Rác</p>
-            <h2>Một thói quen nhỏ, một lựa chọn tốt hơn.</h2>
+            <h2>Một thói quen nhỏ, một thay đổi lớn</h2>
           </div>
           <div>
             <p>Dự án chia sẻ kiến thức phân loại và xử lý rác sinh hoạt có khả năng tái chế cho người trẻ tại Đà Nẵng.</p>

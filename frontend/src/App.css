@@ -443,7 +443,7 @@ a:focus-visible,
 .about-section {
   background-image:
     linear-gradient(rgb(8 24 16 / 67%), rgb(8 24 16 / 67%)),
-    url('./assets/images/banner_gioi_thieu.png');
+    url('./assets/images/bia_3.png');
   background-position: center;
   background-size: cover;
   padding-block: clamp(100px, 13vw, 164px);
@@ -1332,6 +1332,101 @@ summary {
   transform: translate(0, 0);
 }
 
+.tiktok-section {
+  margin-top: clamp(64px, 9vw, 108px);
+}
+
+.tiktok-heading {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  margin-bottom: 38px;
+  text-align: center;
+}
+
+.tiktok-heading h2 {
+  margin: 0;
+  color: var(--palette-deep-green);
+  font-family: var(--font-display);
+  font-size: clamp(25px, 4vw, 40px);
+  font-weight: 850;
+  letter-spacing: 0.015em;
+  line-height: 1.15;
+}
+
+.tiktok-heading a {
+  color: var(--ink);
+  font-size: clamp(15px, 2vw, 19px);
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.tiktok-gallery-frame {
+  padding: 14px 12px 0;
+}
+
+.tiktok-gallery {
+  display: grid;
+  grid-auto-columns: minmax(150px, 1fr);
+  grid-auto-flow: column;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 0 0 10px;
+  scrollbar-color: var(--palette-green) var(--palette-pale-green);
+  scrollbar-width: thin;
+}
+
+.tiktok-gallery-track {
+  display: block;
+  height: 3px;
+  margin: 0 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--palette-green) 22%, white);
+}
+
+.tiktok-gallery-track::before {
+  display: block;
+  width: 24%;
+  height: 100%;
+  margin-inline: auto;
+  border-radius: inherit;
+  background: var(--palette-green);
+  content: '';
+}
+
+.tiktok-video-slot {
+  display: grid;
+  min-width: 0;
+  aspect-ratio: 9 / 15;
+  overflow: hidden;
+  place-items: center;
+  border: 1px dashed color-mix(in srgb, var(--palette-green) 58%, white);
+  border-radius: 10px;
+  color: var(--palette-forest);
+  background: linear-gradient(160deg, var(--surface), var(--palette-pale-green) 78%, #d4edc5);
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.tiktok-video-slot:hover,
+.tiktok-video-slot:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgb(13 122 56 / 16%);
+}
+
+.tiktok-video-slot:focus-visible {
+  outline: 3px solid var(--palette-deep-green);
+  outline-offset: 3px;
+}
+
+.tiktok-video-placeholder {
+  padding: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+}
+
 .news-detail-inner {
   max-width: 880px;
 }
@@ -1470,6 +1565,24 @@ summary {
   text-align: center;
 }
 
+.article-photo {
+  overflow: hidden;
+  margin: 24px 0 32px;
+  border-radius: 20px;
+  background: var(--surface-tint);
+}
+
+.article-photo-featured img {
+  max-height: 620px;
+}
+
+.article-photo img {
+  display: block;
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+}
+
 .article-image-slot-featured {
   min-height: 360px;
 }
@@ -1539,18 +1652,33 @@ summary {
   color: var(--green-700);
 }
 
-.symbol-guide-mark strong {
-  font-size: 18px;
+.symbol-guide-loop {
+  position: relative;
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+}
+
+.symbol-guide-loop svg {
+  width: 48px;
+  height: 48px;
+}
+
+.symbol-guide-loop strong {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% + 2px));
+  color: var(--green-900);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
 }
 
 .symbol-guide-mark > span {
   font-size: 10px;
   font-weight: 750;
-}
-
-.symbol-guide-mobius svg {
-  width: 48px;
-  height: 48px;
 }
 
 .symbol-guide-mobius > span {
@@ -1685,16 +1813,23 @@ summary {
   border-top: 1px solid var(--line-soft);
 }
 
-.person-initial {
+.person-photo-placeholder {
   display: grid;
-  width: 44px;
-  height: 44px;
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
   place-items: center;
   border-radius: 50%;
+  border: 1px dashed color-mix(in srgb, var(--green-700) 48%, transparent);
   color: var(--green-800);
   background: var(--green-100);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 800;
+}
+
+.person-row {
+  grid-template-columns: 64px minmax(0, 1fr);
+  align-items: center;
 }
 
 .person-row strong,
@@ -1718,17 +1853,61 @@ summary {
 
 .team-members li {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 15px;
+  align-items: center;
+  gap: 14px;
   padding: 15px 0;
   border-top: 1px solid var(--line-soft);
 }
 
-.team-members li span {
+.member-info {
+  display: grid;
+  gap: 5px;
+}
+
+.team-members li .member-info span {
   color: var(--ink-muted);
   font-size: 12px;
-  text-align: right;
+}
+
+.team-supporter {
+  margin-top: 48px;
+  max-width: 620px;
+}
+
+.team-supporter h2 {
+  margin-bottom: 20px;
+  color: var(--green-800);
+}
+
+.supporter-card {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 20px;
+  border: 1px solid var(--line-soft);
+  border-radius: 20px;
+  background: var(--surface, #fff);
+}
+
+.supporter-card img {
+  display: block;
+  width: 104px;
+  height: 104px;
+  flex: 0 0 104px;
+  object-fit: contain;
+  border-radius: 14px;
+}
+
+.supporter-card strong {
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.supporter-card p {
+  margin-top: 7px;
+  color: var(--ink-muted);
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 .reception-section {
@@ -2387,14 +2566,19 @@ a.social-link:hover {
     gap: 42px;
   }
 
-  .team-members li {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 4px;
+  .team-supporter {
+    margin-top: 38px;
   }
 
-  .team-members li span {
-    text-align: left;
+  .supporter-card {
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .supporter-card img {
+    width: 80px;
+    height: 80px;
+    flex-basis: 80px;
   }
 
   .reception-layout {

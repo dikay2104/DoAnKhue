@@ -14,7 +14,7 @@ export const newsArticles = [
   {
     slug: 'giam-tap-chat-tai-che',
     category: 'Mẹo tái chế',
-    title: 'Các mẹo giúp giảm thiểu tình trạng nhiễm bẩn rác tái chế',
+    title: 'Những điều cần biết để tránh làm nhiễm bẩn rác tái chế',
     thumbnail: 'contamination',
   },
 ]

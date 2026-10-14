@@ -1,5 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faRecycle, faXmark } from '@fortawesome/free-solid-svg-icons'
+import materialImage from '../assets/images/chat_lieu.jpg'
+import conditionImage from '../assets/images/tinh_trang.jpg'
+import contaminationImage from '../assets/images/nhiem_ban.jpg'
 
 const contaminationItems = [
   'Chất thải từ động vật',
@@ -32,9 +35,8 @@ export default function KnowledgeArticleBody({ article }) {
       <div className="news-article-body contamination-article-body">
         <p className="article-lead">Việc bỏ đúng loại rác vào đúng thùng rất quan trọng. Những loại rác bị bỏ nhầm được gọi là rác gây nhiễm bẩn. Phần lớn chúng ta đang phân loại khá đúng, tuy nhiên khi có quá nhiều vật liệu bị nhiễm bẩn được thu gom, điều này có thể khiến cả một xe rác tái chế không thể được đưa đi tái chế.</p>
 
-        <figure className="article-image-slot article-image-slot-featured">
-          <div className="image-slot-mark" aria-hidden="true">＋</div>
-          <figcaption>Vị trí ảnh minh họa về tình trạng nhiễm bẩn rác tái chế</figcaption>
+        <figure className="article-photo article-photo-featured">
+          <img src={contaminationImage} alt="Minh họa tình trạng nhiễm bẩn rác tái chế" />
         </figure>
 
         <section aria-labelledby="contamination-items-title">
@@ -119,8 +121,10 @@ export default function KnowledgeArticleBody({ article }) {
           {plasticSymbols.map((symbol) => (
             <article className="symbol-guide-card" key={symbol.number}>
               <div className="symbol-guide-mark" role="img" aria-label={`Mã nhựa ${symbol.number}, ${symbol.code}`}>
-                <FontAwesomeIcon icon={faRecycle} aria-hidden="true" />
-                <strong>{symbol.number}</strong>
+                <span className="symbol-guide-loop" aria-hidden="true">
+                  <FontAwesomeIcon icon={faRecycle} />
+                  <strong>{symbol.number}</strong>
+                </span>
                 <span>{symbol.code}</span>
               </div>
               <div className="symbol-guide-copy">
@@ -151,25 +155,21 @@ export default function KnowledgeArticleBody({ article }) {
 
       <p>Vậy làm sao để biết món đồ trong tay bạn có thể được tái chế? Hãy bắt đầu từ những điều đơn giản sau.</p>
 
-      <figure className="article-image-slot article-image-slot-featured">
-        <div className="image-slot-mark" aria-hidden="true">＋</div>
-        <figcaption>Vị trí ảnh minh họa: các loại rác tái chế</figcaption>
-      </figure>
-
       <section aria-labelledby="article-material-title">
         <h2 id="article-material-title">1. Nhìn vào chất liệu của món đồ</h2>
+        <figure className="article-photo">
+          <img src={materialImage} alt="Các loại vật liệu có thể được thu hồi để tái chế" />
+        </figure>
         <p>Bước đầu tiên là xác định món đồ được làm từ chất liệu gì.</p>
         <p>Một số nhóm vật liệu thường có khả năng được thu hồi để tái chế như giấy, nhựa, kim loại và một số loại bao bì. Tuy nhiên, không phải mọi sản phẩm làm từ những vật liệu này đều được tiếp nhận theo cùng một cách.</p>
         <p>Ví dụ, một chai nhựa và một món đồ nhựa khác có thể có cách xử lý hoàn toàn khác nhau. Vì vậy, thay vì chỉ nhìn vào chữ “nhựa” hay “giấy”, hãy kiểm tra xem món đồ đó có thuộc nhóm được thu gom hay không.</p>
       </section>
 
-      <figure className="article-image-slot">
-        <div className="image-slot-mark" aria-hidden="true">＋</div>
-        <figcaption>Vị trí ảnh minh họa: kiểm tra chất liệu và ký hiệu trên bao bì</figcaption>
-      </figure>
-
       <section aria-labelledby="article-condition-title">
         <h2 id="article-condition-title">2. Kiểm tra tình trạng của món đồ</h2>
+        <figure className="article-photo">
+          <img src={conditionImage} alt="Kiểm tra tình trạng và độ sạch của món đồ trước khi tái chế" />
+        </figure>
         <p>Sau khi xác định được loại rác, hãy kiểm tra xem món đồ còn thức ăn, chất lỏng hoặc các chất khác bên trong hay không.</p>
         <p>Rác tái chế thường cần được chuẩn bị ở trạng thái phù hợp trước khi chuyển giao. Một số món cần được:</p>
         <ul>
@@ -181,10 +181,6 @@ export default function KnowledgeArticleBody({ article }) {
         <p>Điều này đặc biệt quan trọng với bao bì thực phẩm và đồ đựng chất lỏng. Một món đồ có thể thuộc nhóm tái chế nhưng nếu chưa được chuẩn bị đúng cách thì vẫn có thể không phù hợp để tiếp nhận.</p>
       </section>
 
-      <figure className="article-image-slot">
-        <div className="image-slot-mark" aria-hidden="true">＋</div>
-        <figcaption>Vị trí ảnh minh họa: làm sạch và chuẩn bị rác tái chế</figcaption>
-      </figure>
     </div>
   )
 }

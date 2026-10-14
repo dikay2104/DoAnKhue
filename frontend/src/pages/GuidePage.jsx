@@ -36,7 +36,6 @@ export default function GuidePage({ searchProps, submission, onSuggestion, onQui
         </div>
 
         <aside className="guide-help">
-          <h2>Chưa chắc món đồ thuộc nhóm nào?</h2>
           <p>Thông tin có thể khác nhau theo tình trạng vật liệu và nơi thu gom. Hãy xác nhận trước khi chuyển giao.</p>
           <GreenReception compact />
         </aside>

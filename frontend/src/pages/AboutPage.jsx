@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBullhorn, faGraduationCap, faPeopleGroup } from '@fortawesome/free-solid-svg-icons'
 import SectionHeading from '../components/SectionHeading'
+import greenDaNangLogo from '../assets/images/LogoGreenDaNang.jpg'
 
 const activities = [
   {
@@ -34,12 +35,14 @@ const advisors = [
 ]
 
 const members = [
-  ['Lê Thị Thục Khuê', 'Trưởng dự án'],
-  ['Lê Anh Thư', 'Ban Nội dung'],
-  ['Thái Nguyễn Như Quỳnh', 'Ban Đối ngoại'],
-  ['Nguyễn Đoàn Thy Thy', 'Ban Nghiên cứu'],
-  ['Nguyễn Thị Phương Trinh', 'Ban Thiết kế'],
+  { name: 'Lê Thị Thục Khuê', role: 'Trưởng dự án' },
+  { name: 'Lê Anh Thư', role: 'Ban Nội dung' },
+  { name: 'Thái Nguyễn Như Quỳnh', role: 'Ban Đối ngoại' },
+  { name: 'Nguyễn Đoàn Thy Thy', role: 'Ban Nghiên cứu' },
+  { name: 'Nguyễn Thị Phương Trinh', role: 'Ban Thiết kế' },
 ]
+
+const initialsFor = (name) => name.split(' ').slice(-2).map((part) => part[0]).join('')
 
 export default function AboutPage() {
   return (
@@ -82,17 +85,32 @@ export default function AboutPage() {
               <h2>Hội đồng cố vấn</h2>
               {advisors.map((advisor) => (
                 <article className="person-row" key={advisor.initials}>
-                  <span className="person-initial" aria-hidden="true">{advisor.initials}</span>
+                  <span className="person-photo-placeholder" aria-hidden="true">{advisor.initials}</span>
                   <div><strong>{advisor.name}</strong><p>{advisor.detail}</p></div>
                 </article>
               ))}
             </div>
             <div className="team-members">
               <h2>Thành viên dự án</h2>
-              <ul>
-                {members.map(([name, role]) => <li key={name}><strong>{name}</strong><span>{role}</span></li>)}
+              <ul className="member-list">
+                {members.map(({ name, role }) => (
+                  <li key={name}>
+                    <span className="person-photo-placeholder" aria-hidden="true">{initialsFor(name)}</span>
+                    <div className="member-info"><strong>{name}</strong><span>{role}</span></div>
+                  </li>
+                ))}
               </ul>
             </div>
+          </div>
+          <div className="team-supporter">
+            <h2>Đơn vị hỗ trợ tiếp nhận</h2>
+            <article className="supporter-card">
+              <img src={greenDaNangLogo} alt="Logo Green Da Nang" />
+              <div>
+                <strong>Tổ chức Green Da Nang</strong>
+                <p>Tổ chức phi lợi nhuận cộng đồng, Đà Nẵng.</p>
+              </div>
+            </article>
           </div>
         </div>
       </section>

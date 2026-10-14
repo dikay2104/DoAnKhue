@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import projectLogo from '../assets/images/logo_2.png'
+import projectLogo from '../assets/images/logo.png'
 
 export default function Header({ navigation, currentPath, onNavigate }) {
   const [menuOpen, setMenuOpen] = useState(false)
