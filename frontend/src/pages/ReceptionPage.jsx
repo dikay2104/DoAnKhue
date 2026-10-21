@@ -1,4 +1,5 @@
 import greenDaNangLogo from '../assets/images/LogoGreenDaNang.jpg'
+import greenEventImage from '../assets/images/sukiengreen.jpg'
 
 const mapUrl = 'https://www.google.com/maps/place/Ch%E1%BA%BF+Lan+Vi%C3%AAn+%26+Ki%E1%BB%87t+35+Ch%E1%BA%BF+Lan+Vi%C3%AAn,+Ng%C5%A9+H%C3%A0nh+S%C6%A1n,+%C4%90%C3%A0+N%E1%BA%B5ng+550000,+Vi%E1%BB%87t+Nam/@16.0424022,108.2456681,18.5z/data=!4m6!3m5!1s0x31421766fc199cfb:0x137100b5b0204b67!8m2!3d16.042365!4d108.2462595!16s%2Fg%2F11f348l9g3?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D'
 
@@ -23,9 +24,9 @@ export default function ReceptionPage() {
 
           <p>Bên cạnh hoạt động thu gom, Green Da Nang còn tổ chức và đồng hành cùng nhiều hoạt động đổi rác lấy quà, phiên chợ xanh, workshop và chương trình giáo dục môi trường tại trường học, sự kiện và cộng đồng. Các hoạt động này hướng đến việc đưa kiến thức về phân loại rác đến gần hơn với người dân, đặc biệt là người trẻ.</p>
 
-          <figure className="event-image-placeholder" aria-label="Vị trí ảnh sự kiện Green Da Nang">
-            <div>Ảnh sự kiện Green Da Nang</div>
-            <figcaption>Hình ảnh hoạt động cộng đồng</figcaption>
+          <figure className="event-image">
+            <img src={greenEventImage} alt="Hoạt động sự kiện cộng đồng của Green Da Nang" />
+            <figcaption>Hình ảnh hoạt động</figcaption>
           </figure>
 
           <p>Một điểm đáng chú ý trong hoạt động của Green Da Nang là kết nối với các đối tác để tiếp nhận và xử lý những loại rác khó tái chế hoặc ít có giá trị kinh tế, chẳng hạn như vỏ hộp giấy, nhựa dùng một lần, vỉ thuốc rỗng và dầu ăn thừa.</p>

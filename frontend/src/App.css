@@ -1988,25 +1988,27 @@ summary {
   object-fit: contain;
 }
 
-.event-image-placeholder {
+.event-image {
   display: grid;
-  min-height: 280px;
+  width: 100%;
   margin: 36px 0 40px;
-  padding: 24px;
-  place-content: center;
+  box-sizing: border-box;
+  justify-items: stretch;
   gap: 8px;
-  border: 1px dashed var(--line-soft);
-  border-radius: var(--radius-lg);
   color: var(--ink-muted);
-  background: var(--surface);
   text-align: center;
 }
 
-.event-image-placeholder > div {
-  font-weight: 650;
+.event-image img {
+  display: block;
+  width: 100%;
+  height: clamp(460px, 55vw, 600px);
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  object-position: center 52%;
 }
 
-.event-image-placeholder figcaption {
+.event-image figcaption {
   font-size: 13px;
 }
 
