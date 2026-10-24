@@ -21,6 +21,29 @@ const pages = {
   '/diem-tiep-nhan': ReceptionPage,
 }
 
+const pageMetadata = {
+  '/': {
+    title: 'Tập Tành Tách Rác | Phân loại rác tái chế tại Đà Nẵng',
+    description: 'Tra cứu cách phân loại, chuẩn bị và chuyển giao rác có thể tái chế tại Đà Nẵng. Cùng Tập Tành Tách Rác bắt đầu từ những thói quen nhỏ.',
+  },
+  '/gioi-thieu': {
+    title: 'Giới thiệu dự án | Tập Tành Tách Rác',
+    description: 'Tìm hiểu dự án Tập Tành Tách Rác và các hoạt động nâng cao kiến thức phân loại rác sinh hoạt cho người trẻ tại Đà Nẵng.',
+  },
+  '/huong-dan': {
+    title: 'Hướng dẫn phân loại rác tái chế | Tập Tành Tách Rác',
+    description: 'Tra cứu cách phân loại và chuẩn bị các món đồ tái chế thường gặp trước khi chuyển giao tại Đà Nẵng.',
+  },
+  '/kien-thuc': {
+    title: 'Kiến thức tái chế | Tập Tành Tách Rác',
+    description: 'Đọc các bài viết về nhận biết rác tái chế, ký hiệu tái chế và cách hạn chế làm nhiễm bẩn vật liệu tái chế.',
+  },
+  '/diem-tiep-nhan': {
+    title: 'Điểm tiếp nhận rác tái chế tại Đà Nẵng | Tập Tành Tách Rác',
+    description: 'Tìm hiểu điểm tiếp nhận rác tái chế được giới thiệu bởi dự án Tập Tành Tách Rác tại Đà Nẵng.',
+  },
+}
+
 function App() {
   const [path, setPath] = useState(window.location.pathname)
   const [query, setQuery] = useState('')
@@ -80,6 +103,23 @@ function App() {
   const detailArticle = path.startsWith('/kien-thuc/')
     ? newsArticles.find((article) => `/kien-thuc/${article.slug}` === path)
     : null
+
+  useEffect(() => {
+    const metadata = detailArticle
+      ? {
+          title: `${detailArticle.title} | Tập Tành Tách Rác`,
+          description: `${detailArticle.title}. Tìm hiểu kiến thức và mẹo tái chế từ dự án Tập Tành Tách Rác tại Đà Nẵng.`,
+        }
+      : pageMetadata[path] ?? pageMetadata['/']
+
+    document.title = metadata.title
+    document.querySelector('meta[name="description"]')?.setAttribute('content', metadata.description)
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', metadata.title)
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', metadata.description)
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', `https://taptanhtachrac.netlify.app${path}`)
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', `https://taptanhtachrac.netlify.app${path}`)
+  }, [path, detailArticle])
+
   const Page = detailArticle ? KnowledgeDetailPage : pages[path] ?? HomePage
   const searchProps = { query, setQuery: handleQueryChange, onSearch: handleSearch, error }
   const pageProps = detailArticle
