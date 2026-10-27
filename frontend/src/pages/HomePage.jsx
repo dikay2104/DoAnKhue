@@ -75,8 +75,7 @@ export default function HomePage({ searchProps }) {
           <section className="home-tiktok-section" aria-labelledby="home-tiktok-title">
             <header className="tiktok-heading">
               <div>
-                <span className="news-category">Video mới</span>
-                <h2 id="home-tiktok-title">Hỏi xoáy đáp xoay #1</h2>
+                <span className="news-category" id="home-tiktok-title">Video mới</span>
               </div>
               <a href="https://www.tiktok.com/@taptanhtachrac" target="_blank" rel="noreferrer">
                 @taptanhtachrac <span aria-hidden="true">·</span> Theo dõi trên TikTok
