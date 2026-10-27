@@ -10,7 +10,15 @@ import ReceptionPage from './pages/ReceptionPage'
 import { projectContact } from './data/recyclingGuide'
 import { newsArticles } from './data/newsArticles'
 import KnowledgeDetailPage from './pages/KnowledgeDetailPage'
-import { findMatches, findSuggestions } from './lib/recyclingSearch'
+import PaperDetailPage from './pages/PaperDetailPage'
+import BeverageCartonDetailPage from './pages/BeverageCartonDetailPage'
+import GlassContainerDetailPage from './pages/GlassContainerDetailPage'
+import MetalCanDetailPage from './pages/MetalCanDetailPage'
+import PlasticBottleDetailPage from './pages/PlasticBottleDetailPage'
+import PlasticPackagingDetailPage from './pages/PlasticPackagingDetailPage'
+import CookingOilDetailPage from './pages/CookingOilDetailPage'
+import UsedBatteryDetailPage from './pages/UsedBatteryDetailPage'
+import { findMatches } from './lib/recyclingSearch'
 import './App.css'
 
 const pages = {
@@ -19,6 +27,14 @@ const pages = {
   '/huong-dan': GuidePage,
   '/kien-thuc': KnowledgePage,
   '/diem-tiep-nhan': ReceptionPage,
+  '/huong-dan/giay-va-bia-giay': PaperDetailPage,
+  '/huong-dan/vo-hop-giay': BeverageCartonDetailPage,
+  '/huong-dan/chai-lo-thuy-tinh': GlassContainerDetailPage,
+  '/huong-dan/vo-lon': MetalCanDetailPage,
+  '/huong-dan/chai-nhua': PlasticBottleDetailPage,
+  '/huong-dan/bao-bi-nhua': PlasticPackagingDetailPage,
+  '/huong-dan/dau-an-thua': CookingOilDetailPage,
+  '/huong-dan/pin-cu': UsedBatteryDetailPage,
 }
 
 const pageMetadata = {
@@ -41,6 +57,38 @@ const pageMetadata = {
   '/diem-tiep-nhan': {
     title: 'Điểm tiếp nhận rác tái chế tại Đà Nẵng | Tập Tành Tách Rác',
     description: 'Tìm hiểu điểm tiếp nhận rác tái chế được giới thiệu bởi dự án Tập Tành Tách Rác tại Đà Nẵng.',
+  },
+  '/huong-dan/giay-va-bia-giay': {
+    title: 'Cách chuẩn bị rác thải giấy | Tập Tành Tách Rác',
+    description: 'Hướng dẫn phân loại, làm sạch, ép phẳng và bó gọn giấy trước khi đem đến điểm tiếp nhận.',
+  },
+  '/huong-dan/vo-hop-giay': {
+    title: 'Cách chuẩn bị vỏ hộp giấy | Tập Tành Tách Rác',
+    description: 'Hướng dẫn làm sạch, tách nắp, ép dẹt và lưu trữ vỏ hộp sữa, nước trái cây trước khi đem đi tái chế.',
+  },
+  '/huong-dan/chai-lo-thuy-tinh': {
+    title: 'Cách chuẩn bị chai lọ thủy tinh | Tập Tành Tách Rác',
+    description: 'Hướng dẫn làm sạch, tháo nắp, giữ tem nhãn và đóng gói chai lọ thủy tinh an toàn trước khi đem đi tái chế.',
+  },
+  '/huong-dan/vo-lon': {
+    title: 'Cách chuẩn bị vỏ lon | Tập Tành Tách Rác',
+    description: 'Hướng dẫn làm sạch, ép bẹp, xử lý nắp sắc và lưu trữ vỏ lon kim loại an toàn trước khi đem đi tái chế.',
+  },
+  '/huong-dan/chai-nhua': {
+    title: 'Cách chuẩn bị chai nhựa | Tập Tành Tách Rác',
+    description: 'Hướng dẫn làm sạch, ép bẹp, đóng nắp và phân loại tem nhãn chai nhựa trước khi đem đi tái chế.',
+  },
+  '/huong-dan/bao-bi-nhua': {
+    title: 'Cách chuẩn bị rác thải nhựa | Tập Tành Tách Rác',
+    description: 'Hướng dẫn loại bỏ tạp chất, làm sạch, xếp chồng và lưu trữ riêng bao bì nhựa trước khi đem đi tái chế.',
+  },
+  '/huong-dan/dau-an-thua': {
+    title: 'Cách chuẩn bị dầu ăn thừa | Tập Tành Tách Rác',
+    description: 'Hướng dẫn làm nguội, lọc cặn, chiết chai và bảo quản riêng dầu ăn thừa trước khi đem đến điểm tiếp nhận.',
+  },
+  '/huong-dan/pin-cu': {
+    title: 'Cách xử lý pin cũ đã qua sử dụng | Tập Tành Tách Rác',
+    description: 'Hướng dẫn phân loại, bảo quản, dán cách điện và chuyển pin cũ đến điểm thu gom chuyên dụng.',
   },
 }
 
@@ -85,7 +133,6 @@ function App() {
     setSubmission({
       query: trimmedTerm,
       matches,
-      suggestions: matches.length === 0 ? findSuggestions(trimmedTerm) : [],
     })
     navigate('/huong-dan')
   }
@@ -93,11 +140,6 @@ function App() {
   function handleSearch(event) {
     event.preventDefault()
     runLookup(query, event.currentTarget.querySelector('input'))
-  }
-
-  function handleSuggestion(term) {
-    setQuery(term)
-    runLookup(term)
   }
 
   const detailArticle = path.startsWith('/kien-thuc/')
@@ -124,8 +166,10 @@ function App() {
   const searchProps = { query, setQuery: handleQueryChange, onSearch: handleSearch, error }
   const pageProps = detailArticle
     ? { article: detailArticle }
+    : ['/huong-dan/giay-va-bia-giay', '/huong-dan/vo-hop-giay', '/huong-dan/chai-lo-thuy-tinh', '/huong-dan/vo-lon', '/huong-dan/chai-nhua', '/huong-dan/bao-bi-nhua', '/huong-dan/dau-an-thua', '/huong-dan/pin-cu'].includes(path)
+    ? { onNavigate: navigate }
     : path === '/huong-dan'
-    ? { searchProps, submission, onSuggestion: handleSuggestion, onQuickSearch: runLookup }
+    ? { searchProps, submission, onQuickSearch: runLookup, onNavigate: navigate }
     : { searchProps }
 
   return (

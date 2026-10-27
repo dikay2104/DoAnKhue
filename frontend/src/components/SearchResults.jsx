@@ -1,7 +1,9 @@
 import GreenReception from './GreenReception'
 
-export default function SearchResults({ submission, onSuggestion }) {
+export default function SearchResults({ submission, onNavigate }) {
   if (!submission) return null
+
+  const isPinSearch = submission.query.toLocaleLowerCase('vi').includes('pin')
 
   if (submission.matches.length === 0) {
     return (
@@ -10,16 +12,6 @@ export default function SearchResults({ submission, onSuggestion }) {
         <div>
           <h2>Không có kết quả</h2>
           <p>Thử tên chất liệu hoặc tên loại đồ khác trong danh mục hướng dẫn.</p>
-          {submission.suggestions.length > 0 && (
-            <div className="suggestions">
-              <span>Có thể bạn muốn tìm:</span>
-              {submission.suggestions.map((item) => (
-                <button key={item.id} type="button" onClick={() => onSuggestion(item.name)}>
-                  {item.name}
-                </button>
-              ))}
-            </div>
-          )}
         </div>
       </div>
     )
@@ -33,7 +25,22 @@ export default function SearchResults({ submission, onSuggestion }) {
       </div>
       <div className="result-list">
         {submission.matches.map((item) => (
-          <article className="result-item" key={item.id}>
+          <article
+            className={`result-item${['paper', 'beverage-carton', 'glass-container', 'metal-cans', 'plastic-bottles', 'plastic-containers-accepted', 'plastic-containers-other', 'cooking-oil'].includes(item.id) || (item.id === 'hazardous-waste' && isPinSearch) ? ' is-clickable' : ''}`}
+            key={item.id}
+            {...(['paper', 'beverage-carton', 'glass-container', 'metal-cans', 'plastic-bottles', 'plastic-containers-accepted', 'plastic-containers-other', 'cooking-oil'].includes(item.id) || (item.id === 'hazardous-waste' && isPinSearch) ? {
+              role: 'link',
+              tabIndex: 0,
+              'aria-label': `Xem hướng dẫn chi tiết: ${item.name}`,
+              onClick: () => onNavigate(item.id === 'paper' ? '/huong-dan/giay-va-bia-giay' : item.id === 'beverage-carton' ? '/huong-dan/vo-hop-giay' : item.id === 'glass-container' ? '/huong-dan/chai-lo-thuy-tinh' : item.id === 'metal-cans' ? '/huong-dan/vo-lon' : item.id === 'plastic-bottles' ? '/huong-dan/chai-nhua' : item.id === 'cooking-oil' ? '/huong-dan/dau-an-thua' : item.id === 'hazardous-waste' ? '/huong-dan/pin-cu' : '/huong-dan/bao-bi-nhua'),
+              onKeyDown: (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault()
+                  onNavigate(item.id === 'paper' ? '/huong-dan/giay-va-bia-giay' : item.id === 'beverage-carton' ? '/huong-dan/vo-hop-giay' : item.id === 'glass-container' ? '/huong-dan/chai-lo-thuy-tinh' : item.id === 'metal-cans' ? '/huong-dan/vo-lon' : item.id === 'plastic-bottles' ? '/huong-dan/chai-nhua' : item.id === 'cooking-oil' ? '/huong-dan/dau-an-thua' : item.id === 'hazardous-waste' ? '/huong-dan/pin-cu' : '/huong-dan/bao-bi-nhua')
+                }
+              },
+            } : {})}
+          >
             <div className="result-main">
               <div className="result-title-row">
                 <h3>{item.name}</h3>

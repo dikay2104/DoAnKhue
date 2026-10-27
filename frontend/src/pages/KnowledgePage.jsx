@@ -2,10 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import NewsArtwork from '../components/NewsArtwork'
 import SectionHeading from '../components/SectionHeading'
+import TikTokVideoGallery from '../components/TikTokVideoGallery'
 import { newsArticles } from '../data/newsArticles'
 
 const tiktokProfile = 'https://www.tiktok.com/@taptanhtachrac'
-const tiktokVideoSlots = ['01', '02', '03', '04', '05']
 
 export default function KnowledgePage() {
   return (
@@ -35,23 +35,7 @@ export default function KnowledgePage() {
               @taptanhtachrac <span aria-hidden="true">·</span> Theo dõi trên TikTok
             </a>
           </header>
-          <div className="tiktok-gallery-frame">
-            <div className="tiktok-gallery" aria-label="Các video TikTok nổi bật">
-              {tiktokVideoSlots.map((number) => (
-                <a
-                  className="tiktok-video-slot"
-                  href={tiktokProfile}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`Video TikTok ${number} của Tập Tành Tách Rác`}
-                  key={number}
-                >
-                  <span className="tiktok-video-placeholder" aria-hidden="true">Ảnh video {number}</span>
-                </a>
-              ))}
-            </div>
-            <span className="tiktok-gallery-track" aria-hidden="true" />
-          </div>
+          <TikTokVideoGallery />
         </section>
       </div>
     </section>

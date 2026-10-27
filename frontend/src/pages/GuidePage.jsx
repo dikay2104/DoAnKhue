@@ -6,7 +6,7 @@ import SearchResults from '../components/SearchResults'
 import SectionHeading from '../components/SectionHeading'
 import { quickGroups } from '../data/recyclingGuide'
 
-export default function GuidePage({ searchProps, submission, onSuggestion, onQuickSearch }) {
+export default function GuidePage({ searchProps, submission, onQuickSearch, onNavigate }) {
   return (
     <section id="huong-dan" className="guide-section section-space page-view" aria-labelledby="guide-title">
       <div className="page-width">
@@ -18,7 +18,7 @@ export default function GuidePage({ searchProps, submission, onSuggestion, onQui
           <SearchForm {...searchProps} inputId="guide-waste-search" />
         </div>
 
-        <SearchResults submission={submission} onSuggestion={onSuggestion} />
+        <SearchResults submission={submission} onNavigate={onNavigate} />
 
         <div className="quick-guide">
           <div className="quick-guide-intro">
