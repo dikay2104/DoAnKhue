@@ -2,6 +2,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBullhorn, faGraduationCap, faPeopleGroup } from '@fortawesome/free-solid-svg-icons'
 import SectionHeading from '../components/SectionHeading'
 import greenDaNangLogo from '../assets/images/LogoGreenDaNang.jpg'
+import advisorThao from '../assets/images/Profile_nhom/Tiến sĩ Đỗ Phương Thảo.jpg'
+import advisorHuyen from '../assets/images/Profile_nhom/Thạc sĩ Nguyễn Thị Phương Huyền.jpg'
+import memberKhue from '../assets/images/Profile_nhom/Lê Thị Thục Khuê.jpg'
+import memberThu from '../assets/images/Profile_nhom/Lê Anh Thư.jpeg'
+import memberQuynh from '../assets/images/Profile_nhom/Thái Nguyễn Như Quỳnh.jpg'
+import memberThy from '../assets/images/Profile_nhom/Nguyễn Đoàn Thy Thy.jpg'
+import memberTrinh from '../assets/images/Profile_nhom/Nguyễn Thị Phương Trinh.jpg'
 
 const activities = [
   {
@@ -26,23 +33,23 @@ const advisors = [
     initials: 'ĐT',
     name: 'Tiến sĩ Đỗ Phương Thảo',
     detail: 'Giảng viên hướng dẫn, Bộ môn Công nghệ truyền thông, Trường Đại học FPT Đà Nẵng.',
+    image: advisorThao,
   },
   {
     initials: 'NH',
     name: 'Thạc sĩ Nguyễn Thị Phương Huyền',
     detail: 'Cố vấn, Phó Trưởng phòng Quản lý Biên giới, Sở Ngoại vụ thành phố Đà Nẵng.',
+    image: advisorHuyen,
   },
 ]
 
 const members = [
-  { name: 'Lê Thị Thục Khuê', role: 'Trưởng dự án' },
-  { name: 'Lê Anh Thư', role: 'Ban Nội dung' },
-  { name: 'Thái Nguyễn Như Quỳnh', role: 'Ban Đối ngoại' },
-  { name: 'Nguyễn Đoàn Thy Thy', role: 'Ban Nghiên cứu' },
-  { name: 'Nguyễn Thị Phương Trinh', role: 'Ban Thiết kế' },
+  { name: 'Lê Thị Thục Khuê', role: 'Trưởng dự án', image: memberKhue },
+  { name: 'Lê Anh Thư', role: 'Ban Nội dung', image: memberThu },
+  { name: 'Thái Nguyễn Như Quỳnh', role: 'Ban Đối ngoại', image: memberQuynh },
+  { name: 'Nguyễn Đoàn Thy Thy', role: 'Ban Nghiên cứu', image: memberThy },
+  { name: 'Nguyễn Thị Phương Trinh', role: 'Ban Thiết kế', image: memberTrinh },
 ]
-
-const initialsFor = (name) => name.split(' ').slice(-2).map((part) => part[0]).join('')
 
 export default function AboutPage() {
   return (
@@ -81,26 +88,31 @@ export default function AboutPage() {
             Nhóm thực hiện cùng các cố vấn và đơn vị hỗ trợ.
           </SectionHeading>
           <div className="team-layout">
-            <div className="team-advisors">
-              <h2>Hội đồng cố vấn</h2>
-              {advisors.map((advisor) => (
-                <article className="person-row" key={advisor.initials}>
-                  <span className="person-photo-placeholder" aria-hidden="true">{advisor.initials}</span>
-                  <div><strong>{advisor.name}</strong><p>{advisor.detail}</p></div>
-                </article>
-              ))}
-            </div>
-            <div className="team-members">
-              <h2>Thành viên dự án</h2>
-              <ul className="member-list">
-                {members.map(({ name, role }) => (
-                  <li key={name}>
-                    <span className="person-photo-placeholder" aria-hidden="true">{initialsFor(name)}</span>
+            <section className="team-group team-advisors" aria-labelledby="advisors-title">
+              <h2 id="advisors-title">Hội đồng cố vấn</h2>
+              <ul className="team-card-grid team-advisor-grid">
+                {advisors.map((advisor) => (
+                  <li className="team-person-card" key={advisor.initials}>
+                    <img className="person-photo" src={advisor.image} alt={advisor.name} />
+                    <div className="member-info">
+                      <strong>{advisor.name}</strong>
+                      <span>{advisor.detail}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </section>
+            <section className="team-group team-members" aria-labelledby="members-title">
+              <h2 id="members-title">Thành viên dự án</h2>
+              <ul className="team-card-grid team-member-grid">
+                {members.map(({ name, role, image }) => (
+                  <li className="team-person-card" key={name}>
+                    <img className="person-photo" src={image} alt={name} />
                     <div className="member-info"><strong>{name}</strong><span>{role}</span></div>
                   </li>
                 ))}
               </ul>
-            </div>
+            </section>
           </div>
           <div className="team-supporter">
             <h2>Đơn vị hỗ trợ tiếp nhận</h2>
